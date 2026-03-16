@@ -7,7 +7,12 @@ export function isValidToken(token: string): boolean {
 }
 
 export async function POST(request: NextRequest) {
-  const { token, date } = await request.json();
+  let token: string, date: string;
+  try {
+    ({ token, date } = await request.json());
+  } catch {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
 
   if (!isValidToken(token)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
