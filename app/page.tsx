@@ -3,7 +3,7 @@ import { daysSince } from '@/lib/days';
 
 const FALLBACK_DATE = '2024-01-01';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   let lastDate: string = FALLBACK_DATE;
