@@ -3,6 +3,8 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, Suspense } from 'react';
 
+const IMPACT = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
+
 function UpdateForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -32,42 +34,70 @@ function UpdateForm() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ background: '#0a0a0a' }}>
-      <h1 className="text-4xl uppercase mb-8 text-center"
-        style={{ fontFamily: "'Bebas Neue', sans-serif", color: '#f5ff00',
-          textShadow: '3px 3px 0px #ff2d78' }}>
-        Update Taco Date
+    <main className="min-h-screen flex flex-col items-center justify-center px-8"
+      style={{ background: '#fff948' }}>
+
+      <h1 style={{
+        fontFamily: IMPACT,
+        fontSize: 'clamp(3rem, 8vw, 7rem)',
+        color: '#ff5926',
+        lineHeight: 1,
+        marginBottom: '2rem',
+        textAlign: 'center',
+      }}>
+        UPDATE TACO DATE
       </h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-xs">
-        <label className="text-xs uppercase tracking-widest"
-          style={{ color: '#00f5ff', fontFamily: 'Inter, sans-serif' }}>
-          Date of Last Taco Catering
+      <form onSubmit={handleSubmit} className="flex flex-col w-full" style={{ maxWidth: '600px', gap: '1.5rem' }}>
+        <label style={{
+          fontFamily: IMPACT,
+          fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+          color: '#ff5926',
+        }}>
+          DATE OF LAST TACO CATERING
         </label>
+
         <input
           type="date"
           value={date}
           onChange={e => setDate(e.target.value)}
           required
-          className="px-4 py-3 text-xl bg-transparent border-2 text-white"
-          style={{ borderColor: '#f5ff00', fontFamily: "'Bebas Neue', sans-serif",
-            colorScheme: 'dark' }}
+          style={{
+            fontFamily: IMPACT,
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            color: '#ff5926',
+            background: 'transparent',
+            border: '4px solid #ff5926',
+            padding: '0.75rem 1rem',
+            width: '100%',
+            colorScheme: 'light',
+          }}
         />
 
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="py-3 text-xl uppercase tracking-widest transition-opacity"
-          style={{ background: '#f5ff00', color: '#0a0a0a',
-            fontFamily: "'Bebas Neue', sans-serif",
-            opacity: status === 'loading' ? 0.5 : 1 }}>
-          {status === 'loading' ? 'Saving...' : 'Save Date'}
+          style={{
+            fontFamily: IMPACT,
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            background: '#ff5926',
+            color: '#fff948',
+            border: 'none',
+            padding: '1rem',
+            cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+            opacity: status === 'loading' ? 0.6 : 1,
+          }}>
+          {status === 'loading' ? 'SAVING...' : 'SAVE DATE'}
         </button>
 
         {status === 'error' && (
-          <p className="text-sm text-center" style={{ color: '#ff2d78', fontFamily: 'Inter, sans-serif' }}>
-            {errorMsg}
+          <p style={{
+            fontFamily: IMPACT,
+            fontSize: '1.5rem',
+            color: '#ff5926',
+            textAlign: 'center',
+          }}>
+            {errorMsg.toUpperCase()}
           </p>
         )}
       </form>
