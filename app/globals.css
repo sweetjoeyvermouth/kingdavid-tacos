@@ -2,14 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --neon-yellow: #f5ff00;
-  --neon-pink: #ff2d78;
-  --neon-cyan: #00f5ff;
-  --deep-black: #0a0a0a;
-}
-
 body {
-  background-color: var(--deep-black);
-  font-family: 'Bebas Neue', sans-serif;
+  background-color: #fff948;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ff5926;
 }

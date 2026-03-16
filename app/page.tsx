@@ -1,5 +1,6 @@
 import { kv } from '@vercel/kv';
 import { daysSince } from '@/lib/days';
+import Image from 'next/image';
 
 const FALLBACK_DATE = '2024-01-01';
 
@@ -25,67 +26,62 @@ export default async function Home() {
   });
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden relative"
-      style={{ background: 'var(--deep-black)' }}>
+    <main className="min-h-screen flex flex-col items-center justify-center px-8"
+      style={{ background: '#fff948' }}>
 
-      {/* Background decorative stripes */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, #f5ff00 0px, #f5ff00 2px, transparent 2px, transparent 40px)',
-        }}
-      />
-
-      {/* Top label */}
-      <p className="text-sm tracking-[0.4em] uppercase mb-2"
-        style={{ color: 'var(--neon-pink)', fontFamily: 'Inter, sans-serif', fontWeight: 700 }}>
-        Office Taco Tracker
-      </p>
-
-      {/* Headline */}
-      <h1 className="text-center uppercase leading-none mb-6"
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 'clamp(2.5rem, 8vw, 7rem)',
-          color: 'var(--neon-yellow)',
-          letterSpacing: '0.02em',
-          textShadow: '4px 4px 0px var(--neon-pink)',
+      {/* DAYS SINCE + taco image on same line */}
+      <div className="flex items-center gap-6">
+        <span style={{
+          fontSize: 'clamp(4rem, 12vw, 10rem)',
+          color: '#ff5926',
+          lineHeight: 1,
+          fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
         }}>
-        Days Since<br />King David<br />Breakfast Tacos
-      </h1>
-
-      {/* The Big Number */}
-      <div className="relative my-4">
-        <span
-          style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: 'clamp(8rem, 40vw, 22rem)',
-            lineHeight: 1,
-            color: 'var(--deep-black)',
-            WebkitTextStroke: '4px var(--neon-cyan)',
-            textShadow: '6px 6px 0px var(--neon-pink), 12px 12px 0px rgba(255,45,120,0.3)',
-          }}>
-          {days}
+          DAYS SINCE
         </span>
+        <Image
+          src="/taco.png"
+          alt="breakfast taco"
+          width={300}
+          height={300}
+          style={{
+            height: 'clamp(4rem, 12vw, 10rem)',
+            width: 'auto',
+          }}
+        />
       </div>
 
-      {/* Last date */}
-      <div className="mt-2 border-t-2 pt-4 text-center"
-        style={{ borderColor: 'var(--neon-yellow)' }}>
-        <p className="uppercase tracking-widest text-xs mb-1"
-          style={{ color: 'var(--neon-cyan)', fontFamily: 'Inter, sans-serif' }}>
-          Last Catered
-        </p>
-        <p className="uppercase text-2xl md:text-4xl"
-          style={{ color: 'var(--neon-yellow)', fontFamily: "'Bebas Neue', sans-serif" }}>
-          {formattedDate}
-        </p>
+      {/* Big number */}
+      <div style={{
+        fontSize: 'clamp(12rem, 50vw, 30rem)',
+        color: '#ff5926',
+        lineHeight: 0.9,
+        fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
+      }}>
+        {days}
       </div>
 
-      {/* Bottom stamp */}
-      <p className="absolute bottom-6 text-xs uppercase tracking-widest opacity-30"
-        style={{ color: 'var(--neon-yellow)', fontFamily: 'Inter, sans-serif' }}>
-        King David Hot Chicken · Austin TX
-      </p>
+      {/* King David label */}
+      <div style={{
+        fontSize: 'clamp(2rem, 6vw, 5rem)',
+        color: '#ff5926',
+        lineHeight: 1,
+        fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
+        textAlign: 'center',
+      }}>
+        KING DAVID BREAKFAST TACOS
+      </div>
+
+      {/* Last catered date */}
+      <div className="mt-4" style={{
+        fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+        color: '#ff5926',
+        fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
+        textAlign: 'center',
+      }}>
+        LAST CATERED: {formattedDate.toUpperCase()}
+      </div>
+
     </main>
   );
 }
